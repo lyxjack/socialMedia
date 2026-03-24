@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+
+# Temp / process files
+.in-process/
+source/
+
+# Claude Code local
+.claude/
+
+# Go build
+xiaohongshu-mcp/xiaohongshu-mcp
+
+# Large binary assets from xiaohongshu-mcp
+xiaohongshu-mcp/assets/*.gif
+xiaohongshu-mcp/assets/*.mp4
+xiaohongshu-mcp/examples/**/images/*.png
+xiaohongshu-mcp/examples/**/images/*.jpg
+
+# Logs
+*.log
