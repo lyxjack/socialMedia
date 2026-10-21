@@ -230,7 +230,7 @@ func uploadImages(page *rod.Page, imagesPaths []string) error {
 
 		slog.Info("图片已提交上传", "index", i+1, "path", path)
 
-		// 等待当前图片上传完成（预览元素数量达到 i+1），最多等 60 秒
+		// 等待当前图片上传完成（预览元素数量达到 i+1），最多等 180 秒
 		if err := waitForUploadComplete(page, i+1); err != nil {
 			return errors.Wrapf(err, "第%d张图片上传超时", i+1)
 		}
@@ -240,9 +240,9 @@ func uploadImages(page *rod.Page, imagesPaths []string) error {
 	return nil
 }
 
-// waitForUploadComplete 等待第 expectedCount 张图片上传完成，最多等 60 秒
+// waitForUploadComplete 等待第 expectedCount 张图片上传完成，最多等 180 秒
 func waitForUploadComplete(page *rod.Page, expectedCount int) error {
-	maxWaitTime := 60 * time.Second
+	maxWaitTime := 180 * time.Second
 	checkInterval := 500 * time.Millisecond
 	start := time.Now()
 	lastLogCount := expectedCount - 1
@@ -268,7 +268,7 @@ func waitForUploadComplete(page *rod.Page, expectedCount int) error {
 		time.Sleep(checkInterval)
 	}
 
-	return errors.Errorf("第%d张图片上传超时(60s)，请检查网络连接和图片大小", expectedCount)
+	return errors.Errorf("第%d张图片上传超时(180s)，请检查网络连接和图片大小", expectedCount)
 }
 
 func submitPublish(page *rod.Page, title, content string, tags []string, scheduleTime *time.Time, isOriginal bool, visibility string, products []string) error {
